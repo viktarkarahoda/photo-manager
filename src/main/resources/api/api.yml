@@ -1,0 +1,467 @@
+openapi: 3.0.2
+security:
+  - bearerAuth: []
+info:
+  description: Photo manager.
+  title: Manager
+  version: 1.0.0
+servers:
+  - url: https://to_be_defined/{basePath}
+    description: The development API server
+    variables:
+      basePath:
+        default: /service/v1
+paths:
+  /orders/create:
+    post:
+      operationId: placeOrder
+      summary: >-
+        place new order.
+      tags:
+        - order
+      requestBody:
+        description: send reuest body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+  /orders/modify:
+    put:
+      operationId: modifyOrder
+      summary: >-
+        modify order.
+      tags:
+        - order
+      requestBody:
+        description: send reuest body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: >-
+        get order.
+      tags:
+        - order
+      parameters:
+        - $ref: '#/components/parameters/orderId'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+  /accounts/create:
+    post:
+      operationId: createAccount
+      summary: >-
+        create new account.
+      tags:
+        - account
+      requestBody:
+        description: send reuest body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+  /accounts/modify:
+    put:
+      operationId: modifyAccount
+      summary: >-
+        modify account.
+      tags:
+        - account
+      requestBody:
+        description: send reuest body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: >-
+        get account.
+      tags:
+        - account
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "503":
+          description: Error calling service.
+components:
+  parameters:
+    orderId:
+      name: orderId
+      in: path
+      description: Order Id
+      required: true
+      schema:
+        type: string
+    accountId:
+      name: accountId
+      in: path
+      description: Account Id
+      required: true
+      schema:
+        type: string
+  schemas:
+    Order:
+      description: order object.
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        number:
+          type: integer
+          format: int64
+        accountId:
+          type: string
+          example: 1
+        title:
+          type: string
+          example: first order
+        client:
+          $ref: "#/components/schemas/Account"
+        description:
+          type: string
+          example: description
+        totalPrice:
+          type: number
+          format: double
+          example: 23.23
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItem"
+        orderDetails:
+            $ref: "#/components/schemas/OrderDetails"
+    Account:
+      description: account object.
+      type: object
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+          format: int64
+        contactInfo:
+          $ref: "#/components/schemas/ContactInfo"
+        name:
+          type: string
+          example: Viktar
+        createdAt:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        notifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Notification"
+        role:
+          enum:
+            - ADMIN
+            - OPERATOR
+            - CLIENT
+    ContactInfo:
+      description: contact information
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        phone:
+          type: array
+          items:
+            type: string
+        email:
+          type: string
+        addresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Address"
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+    Modification:
+      description: modifications info.
+      type: object
+      properties:
+        id:
+          type: string
+        entityId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        type:
+          enum:
+            - CREATE
+            - EDIT
+            - DELETE
+            - UPDATE
+        comment:
+          $ref: "#/components/schemas/Comment"
+    Comment:
+      description: comments.
+      type: object
+      properties:
+        id:
+          type: string
+        entityId:
+          type: string
+        message:
+          type: string
+        date:
+          type: string
+          format: date-time
+        status:
+          enum:
+            - ACTIVE
+            - INACTIVE
+    OrderItem:
+      description: order item information.
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        orderId:
+          type: string
+          format: UUID
+        size:
+          type: string
+          example: 10x15
+        count:
+          type: integer
+          example: 10
+        price:
+          type: number
+          example: 1.5
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileItem"
+        createdAt:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+    FileItem:
+      description: file item information.
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        orderItemId:
+          type: string
+          format: UUID
+        link:
+          type: string
+          example: https://s3url
+        preview:
+          type: string
+          format: byte
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+    OrderDetails:
+      description: order details information.
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        orderId:
+          type: string
+          format: UUID
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
+        shippingCosts:
+          type: number
+          format: double
+        createdAt:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        plannedDate:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        paymentDate:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        paymentType:
+          enum:
+            - CASH
+            - PAYMENT_CARD
+        status:
+          enum:
+            - NEW
+            - IN_PROGRESS
+            - COMPLETED
+            - CLOSED
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+    Notification:
+      description: notification info.
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        orderId:
+          type: string
+          format: UUID
+        message:
+          type: string
+          example: order 12345 created
+        date:
+          type: string
+          format: date-time
+          example: 2020-09-21T17:32:28Z
+        state:
+          enum:
+            - NEW
+            - ACTIVE
+            - INACTIVE
+            - VIEWED
+        type:
+          enum:
+            - ORDER
+            - ACCOUNT
+            - PAYMENT
+            - INFO
+    Address:
+      description: address info
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+        index:
+          type: string
+          example: 225051
+        city:
+          type: string
+          example: Kamianiets
+        region:
+          type: string
+          example: Brest
+        street:
+          type: string
+          example: Brestskaya
+        building:
+          type: string
+          example: 15/1
+        apartment:
+          type: string
+          example: 10a
+        modifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modification"
+
+
+

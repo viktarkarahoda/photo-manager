@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: photo-manager
+  profiles:
+    include:
+      - "local"
+      - "test"
+    default: local
+
+server:
+  port: 8080
+

@@ -8,6 +8,8 @@
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
           <root url="file://$MODULE_DIR$/target/generated-sources/annotations" />
+          <root url="file://$MODULE_DIR$/target/generated-sources/openapi/src/gen/java/main" />
+          <root url="file://$MODULE_DIR$/target/generated-sources/openapi/src/test/java" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -23,10 +25,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" generated="true" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/openapi/src/gen/java/main" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/openapi/src/test/java" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/a" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/securityhotspotstore/a" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/ZeppelinRemoteNotebooks" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -57,20 +61,21 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:6.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:3.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:3.5.5" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.19.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.19.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.19.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.19.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:3.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:10.1.44" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:10.1.44" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:10.1.44" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:6.2.10" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-observation:1.15.3" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-commons:1.15.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.2.10" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:3.5.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:10.1.44" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:8.0.3.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.6.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.7.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:3.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:3.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:3.5.5" level="project" />
@@ -79,8 +84,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:3.5.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:3.5.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.jayway.jsonpath:json-path:2.9.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:4.0.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: jakarta.activation:jakarta.activation-api:2.1.3" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:2.1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.minidev:json-smart:2.5.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.minidev:accessors-smart:2.5.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:9.7.1" level="project" />
@@ -122,6 +127,22 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:6.5.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testcontainers:junit-jupiter:1.21.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testcontainers:mongodb:1.21.3" level="project" />
+    <orderEntry type="library" name="Maven: org.openapitools:jackson-databind-nullable:0.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.19.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.19.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.19.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-ui:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-webmvc-core:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-common:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: io.swagger.core.v3:swagger-core:2.2.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.17.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.2" level="project" />
+    <orderEntry type="library" name="Maven: io.swagger.core.v3:swagger-annotations:2.2.9" level="project" />
+    <orderEntry type="library" name="Maven: io.swagger.core.v3:swagger-models:2.2.9" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:swagger-ui:4.18.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.6.3" level="project" />
+    <orderEntry type="library" name="Maven: org.mapstruct:mapstruct-processor:1.6.3" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="568b1a0a-1552-48e2-be3f-82b04e1b717f" />
