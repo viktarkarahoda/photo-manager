@@ -42,7 +42,7 @@ public class OrderController implements OrderApi {
     }
 
     @Override
-    public ResponseEntity<RestOrderDto> placeOrder(RestOrderDto orderDto) {
+    public ResponseEntity<RestOrderDto> createOrder(RestOrderDto orderDto) {
         Order newOrder = orderMapper.toOrder(orderDto);
         Order order = orderService.createOrder(newOrder);
         RestOrderDto responseOrder = restOrderMapper.toOrderDto(order);
